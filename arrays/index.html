@@ -10,7 +10,7 @@
       const liste = [5, 9, 3, 4];
       // Array auf der Konsole ausgeben
       console.log(liste);
-      // Array mitt Werten füllen & Werte ausgeben
+      // Array mit Werten füllen & Werte ausgeben
       liste.push(6);
       console.log(liste);
       liste.push(7);
@@ -21,6 +21,17 @@
       console.log(liste);
       // Spezifische ausgabe
       console.log(liste[0]);
+      //Javascript Zählung beginnt bei 0, daher ist das erste Element 0, das zweite 1 usw.
+      console.log(liste[liste.length - 1]);
+      console.log(liste.length);
+      // Array Länge ausgeben ohne -1 undefined
+      // Array splicen (löschen und einfügen)
+      liste.slice(0, 1);
+      console.log(liste);
+      // erste Zahl nach welcher stelle gelöscht werden soll, zweite Zahl wie viele Zahlen von dieser stelle gelöscht werden
+      liste.splice(0, 0, 6);
+      console.log(liste);
+      //mit splice hinzufügen erste zahl nach welcher stelle eingefügt werden soll,zweite zahl sollt null sein sonst wird gelöscht, dritte zahl welche Zahl hinzugefügt werden soll
     </script>
   </head>
   <body></body>
