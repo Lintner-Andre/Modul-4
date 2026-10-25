@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objecte</title>
+    <script>
+      let students = [];
+
+      function addStudent() {
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const age = document.getElementById("age").value;
+        const studentClass = document.getElementById("class").value;
+        const englishGrade = document.getElementById("englishGrade").value;
+        const germanGrade = document.getElementById("germanGrade").value;
+        const mathGrade = document.getElementById("mathGrade").value;
+
+        const student = {
+          firstName: firstName,
+          lastName: lastName,
+          age: age,
+          class: studentClass,
+          grades: {
+            english: englishGrade,
+            german: germanGrade,
+            math: mathGrade
+          }
+        };
+
+        students.push(student);
+        console.log(students);
+      }
+
+      function showAll() {
+        console.log(students);
+      }
+
+
+
+    </script>
+  </head>
+    <body>
+    Vorname: <input type="text" id="firstName" /></br>
+    Nachname: <input type="text" id="lastName" /></br>
+    Alter: <input type="number" id="age" /></br>
+    <label for="class">Klasse:</label>
+<select id="class" name="class">
+  <option value="option1"> 1</option>
+  <option value="option2" > 2 </option>
+  <option value="option3"> 3</option>
+  <option value="option4"> 4</option>
+</select>
+</br>
+
+    <label for="englishGrade">Englisch Note
+    </label>
+<select id="englishGrade" name="englishGrade">
+  <option value="Note1"> 1</option>
+  <option value="Note2" > 2 </option>
+  <option value="Note3"> 3</option>
+  <option value="Note4"> 4</option>
+  <option value="Note5"> 5</option>
+  <option value="Note6"> 6</option>
+</select>
+
+</br>
+    <label for="germanGrade">Deutsch Note
+    </label>
+<select id="germanGrade" name="germanGrade">
+  <option value="Note1"> 1</option>
+  <option value="Note2" > 2 </option>
+  <option value="Note3"> 3</option>
+  <option value="Note4"> 4</option>
+  <option value="Note5"> 5</option>
+  <option value="Note6"> 6</option>
+</select>
+</br>
+    <label for="mathGrade">Mathe Note
+    </label>
+<select id="mathGrade" name="mathGrade">
+  <option value="Note1"> 1</option>
+  <option value="Note2" > 2 </option>
+  <option value="Note3"> 3</option>
+  <option value="Note4"> 4</option>
+  <option value="Note5"> 5</option>
+  <option value="Note6"> 6</option>
+</select>
+</br>
+<button onclick="addStudent()">Hinzufügen</button><br />
+<button onclick="showAll()">Alle anzeigen</button><br />
+
+
+
+
+  </body>
+</html>
