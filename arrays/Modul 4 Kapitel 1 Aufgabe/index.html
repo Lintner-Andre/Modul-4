@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays</title>
+    <script>
+      let List = [2, 5, 8, 9];
+
+      function addNumber() {
+        const content = document.getElementById("numberInput").value;
+        List.push(content);
+        console.log(List);
+      }
+
+      function showAll() {
+        console.log(List);
+        List.forEach((number) => {
+          console.log(number);
+        });
+      }
+
+      function deleteNumber() {
+        const position = document.getElementById("numberDelete").value;
+        if (position >= 0 && position < List.length) {
+          List.splice(position, 1);
+          showAll();
+        } else {
+          console.log("Ungültige Position");
+        }
+      }
+
+      function deleteNumberSelf() {
+        const content = document.getElementById("numberDeleteSelf").value;
+        const newList = List.filter((element) => {
+          return element !== content;
+        });
+        List = newList;
+        showAll();
+      }
+
+      function multiplyNumbers() {
+        const newList = List.map((element) => {
+          return element * 2;
+        });
+        List = newList;
+        showAll();
+      }
+
+      function sumNumbers() {
+        const sum = List.reduce((previousValue, currentValue) => {
+          return previousValue + currentValue;
+        });
+        console.log(sum);
+      }
+    </script>
+  </head>
+  <body>
+    Zahl Einfügen: <input type="number" id="numberInput" />
+    <button onclick="addNumber()">Hinzufügen</button><br />
+    Zahl an Stelle löschen: <input type="number" id="numberDelete" />
+    <button onclick="deleteNumber()">Löschen</button><br />
+    Die Zahl selber Löschen: <input type="number" id="numberDeleteSelf" />
+    <button onclick="deleteNumberSelf()">Löschen</button><br />
+    <button onclick="multiplyNumbers()">Multiplizieren</button><br />
+    <button onclick="sumNumbers()">Addieren</button><br />
+    <button onclick="showAll()">Anzeigen</button>
+  </body>
+</html>
