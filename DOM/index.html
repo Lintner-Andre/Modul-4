@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const firstName = [
+        "John",
+        "Jane",
+        "Michael",
+        "Emily",
+        "David",
+        "Sarah",
+        "Daniel",
+        "Olivia",
+        "Matthew",
+        "Sophia",
+      ];
+      const lastName = [
+        "Smith",
+        "Johnson",
+        "Williams",
+        "Brown",
+        "Jones",
+        "Miller",
+        "Davis",
+        "Garcia",
+        "Rodriguez",
+        "Martinez",
+      ];
+      const age = [6, 7, 8, 8, 9, 10, 11, 12, 13, 14];
+
+      function generateRandomPerson() {
+        const randomFirstName =
+          firstName[Math.floor(Math.random() * firstName.length)];
+        const randomLastName =
+          lastName[Math.floor(Math.random() * lastName.length)];
+        const randomAge = age[Math.floor(Math.random() * age.length)];
+        console.log(randomFirstName, randomLastName, randomAge);
+      }
+
+      const studentDiv = document.createElement("div");
+      studentDiv.classList.add("student");
+      studentDiv.id = Math.random();
+
+      const firstNameParagraph = document.createElement("p");
+      const lastNameParagraph = document.createElement("p");
+      const ageParagraph = document.createElement("p");
+
+      const firstNameText = document.createTextNode(randomFirstName);
+      const lastNameText = document.createTextNode(randomLastName);
+      const ageText = document.createTextNode(randomAge);
+
+      firstNameParagraph.appendChild(firstNameText);
+      lastNameParagraph.appendChild(lastNameText);
+      ageParagraph.appendChild(ageText);
+
+      studentDiv.appendChild(firstNameParagraph);
+      studentDiv.appendChild(lastNameParagraph);
+      studentDiv.appendChild(ageParagraph);
+      console.log(studentDiv);
+      document.getElementById("output").appendChild(studentDiv);
+    </script>
+  </head>
+  <body>
+    <button onclick="generateRandomPerson()">Generiere zufällige Person</button>
+    <div id="output"></div>
+  </body>
+</html>
