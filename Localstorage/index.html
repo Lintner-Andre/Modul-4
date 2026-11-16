@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .student {
+        border: 1px solid black;
+      }
+    </style>
+    <script>
+      // TODO 11: Eventlistener
+      document.addEventListener("DOMContentLoaded", initStudents);
+
+      const firstNames = ["Jan", "Peter", "Ulrich"];
+      const lastNames = ["Müller", "Meier", "Schuster"];
+      const ages = [7, 8, 9];
+
+      // TODO 1: Student Array speichern
+      let students = [];
+
+      //TODO 10: Init Methode zum Laden und anzeigen
+      function initStudents() {
+        loadFromLocalStorage();
+        students.forEach((student) => {
+          appendStudent(student);
+        });
+      }
+
+      //TODO 4: Students aus localstorage lesen
+      function loadFromLocalStorage() {
+        const studentsFromStorage = JSON.parse(
+          localStorage.getItem("students"),
+        );
+        if (studentsFromStorage !== null) {
+          students = studentsFromStorage;
+        }
+      }
+
+      //TODO 3: Students in localstorage speichern
+      function saveToLocalStorage() {
+        console.log(JSON.stringify(students));
+        localStorage.setItem("students", JSON.stringify(students));
+      }
+
+      //TODO 7: Students löschen function und in Localstorage speichern
+      function deleteStudent(id) {
+        document.getElementById(id).remove();
+        students = students.filter((student) => {
+          return student.id !== id;
+        });
+        saveToLocalStorage();
+      }
+
+      function randomStudent() {
+        const randomFirstName =
+          firstNames[Math.floor(Math.random() * firstNames.length)];
+        const randomLastName =
+          lastNames[Math.floor(Math.random() * lastNames.length)];
+        const randomAge = ages[Math.floor(Math.random() * ages.length)];
+
+        //TODO 5: ID generieren
+
+        const id = Math.random();
+
+        //TODO 2: In Array und Localstorage speichern
+        const student = {
+          id: id,
+          firstName: randomFirstName,
+          lastName: randomLastName,
+          age: randomAge,
+        };
+        students.push(student);
+        saveToLocalStorage();
+
+        //TODO 6: Id anpassen
+
+        // TODO 9: Student appenden.
+        appendStudent(student);
+      }
+
+      // TODO 8: Funktion zum appenden auslagern.
+      function appendStudent(student) {
+        const studentDiv = document.createElement("div");
+        studentDiv.classList.add("student");
+        studentDiv.id = student.id;
+        studentDiv.style.backgroundColor = "#ddd";
+
+        const firstNameParagraph = document.createElement("p");
+        const lastNameParagraph = document.createElement("p");
+        const ageParagraph = document.createElement("p");
+
+        const firstNameText = document.createTextNode(
+          "Vorname: " + student.firstName,
+        );
+        const lastNameText = document.createTextNode(
+          "Nachname: " + student.lastName,
+        );
+        const ageText = document.createTextNode("Alter: " + student.age);
+
+        firstNameParagraph.appendChild(firstNameText);
+        lastNameParagraph.appendChild(lastNameText);
+        ageParagraph.appendChild(ageText);
+
+        studentDiv.appendChild(firstNameParagraph);
+        studentDiv.appendChild(lastNameParagraph);
+        studentDiv.appendChild(ageParagraph);
+
+        //TODO 7: Löschen Button
+
+        const deleteButton = document.createElement("button");
+        const deleteButtonText = document.createTextNode("Löschen");
+        deleteButton.setAttribute("onclick", `deleteStudent(${student.id})`);
+        deleteButton.appendChild(deleteButtonText);
+        studentDiv.appendChild(deleteButton);
+
+        document.getElementById("wrapper").appendChild(studentDiv);
+      }
+    </script>
+  </head>
+
+  <body>
+    <button onclick="randomStudent()">ADD</button>
+    <h1>Students</h1>
+    <div id="wrapper"></div>
+  </body>
+</html>
